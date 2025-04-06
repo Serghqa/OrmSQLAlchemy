@@ -14,14 +14,14 @@ class Trainer(Base):
 
     trainer_id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     name: Mapped[str] = mapped_column(String)
-    group: Mapped[list['Group']] = relationship(back_populates='clients')
+    group: Mapped[list['Client']] = relationship(back_populates='clients')
 
     def __repr__(self):
         return f'trainer_id: {self.trainer_id}, name: {self.name}'
 
 
-class Group(Base):
-    __tablename__ = 'group'
+class Client(Base):
+    __tablename__ = 'client'
 
     client_id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     name: Mapped[str] = mapped_column(String)
@@ -39,12 +39,12 @@ async def main():
         trainer_id=123456789,
         name='name'
     )
-    client1 = Group(
+    client1 = Client(
         client_id=123654987,
         name='hdg',
         trainer_id=123456789
     )
-    client2 = Group(
+    client2 = Client(
         client_id=123654988,
         name='hdgcc',
         trainer_id=123456789
